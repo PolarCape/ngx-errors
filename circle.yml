@@ -4,7 +4,7 @@ jobs:
     working_directory: /ngerrors
 
     docker:
-      - image: polarcape/ngerrors-primary:latest
+      - image: circleci/node:9.11-browsers
 
     steps:
       - checkout
