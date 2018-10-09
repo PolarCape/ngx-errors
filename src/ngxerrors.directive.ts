@@ -1,7 +1,7 @@
 import { Directive, Input, OnChanges, OnDestroy, AfterViewInit } from '@angular/core';
 import { FormGroupDirective, AbstractControl } from '@angular/forms';
 
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 import { ErrorDetails, ErrorOptions } from './ngxerrors';
 
@@ -12,7 +12,6 @@ import { toArray } from './utils/toArray';
   exportAs: 'ngxErrors'
 })
 export class NgxErrorsDirective implements OnChanges, OnDestroy, AfterViewInit {
-
   @Input('ngxErrors')
   controlName: string;
 
@@ -22,9 +21,7 @@ export class NgxErrorsDirective implements OnChanges, OnDestroy, AfterViewInit {
 
   ready: boolean = false;
 
-  constructor(
-    private form: FormGroupDirective
-  ) { }
+  constructor(private form: FormGroupDirective) {}
 
   get errors() {
     if (!this.ready) return;
@@ -50,15 +47,14 @@ export class NgxErrorsDirective implements OnChanges, OnDestroy, AfterViewInit {
 
   private checkPropState(prop: string, name: string, conditions: ErrorOptions): boolean {
     if (!this.ready) return;
-    const controlPropsState = (
-      !conditions || toArray(conditions).every((condition: string) => this.control[condition])
-    );
+    const controlPropsState =
+      !conditions || toArray(conditions).every((condition: string) => this.control[condition]);
     if (name.charAt(0) === '*') {
       return this.control[prop] && controlPropsState;
     }
-    return (
-      prop === 'valid' ? !this.control.hasError(name) : this.control.hasError(name) && controlPropsState
-    );
+    return prop === 'valid'
+      ? !this.control.hasError(name)
+      : this.control.hasError(name) && controlPropsState;
   }
 
   private checkStatus() {
@@ -74,7 +70,7 @@ export class NgxErrorsDirective implements OnChanges, OnDestroy, AfterViewInit {
   ngOnChanges() {
     this.control = this.form.control.get(this.controlName);
   }
-  
+
   ngAfterViewInit() {
     setTimeout(() => {
       this.checkStatus();
@@ -85,5 +81,4 @@ export class NgxErrorsDirective implements OnChanges, OnDestroy, AfterViewInit {
   ngOnDestroy() {
     this.subject.unsubscribe();
   }
-
 }
