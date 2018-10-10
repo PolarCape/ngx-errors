@@ -9,12 +9,6 @@ ngx-errors
 </h1>
 <h4 align="center">A declarative validation errors module for reactive forms.</h4>
 
----
-
-<a href="https://ultimateangular.com" target="_blank"><img src="https://ultimateangular.com/assets/img/banners/ua-github.svg"></a>
-
----
-
 <div align="center" markdown="1">
 <a href="#installation">Installation</a> |
 <a href="#setup">Setup</a> |
@@ -67,11 +61,11 @@ Check out the documentation below for all the syntax we provide.
 ### Installation
 
 ```bash
-yarn add @ultimate/ngxerrors
+yarn add @polarcape/ngxerrors
 
 # OR
 
-npm i @ultimate/ngxerrors
+npm i @polarcape/ngxerrors
 ```
 
 ### Setup
@@ -79,7 +73,7 @@ npm i @ultimate/ngxerrors
 Just add ngx-errors to your module:
 
 ```js
-import { NgxErrorsModule } from '@ultimate/ngxerrors';
+import { NgxErrorsModule } from '@polarcape/ngxerrors';
 
 @NgModule({ imports: [ NgxErrorsModule ] })
 ```
@@ -365,14 +359,14 @@ The `errors` property returns the object associated with any active errors. This
 
 > The errors returned are identical to Angular's FormControl API
 
-[circle-badge]: https://circleci.com/gh/UltimateAngular/ngxerrors.svg?style=shield
-[circle-badge-url]: https://circleci.com/gh/UltimateAngular/ngxerrors
-[david-badge]: https://david-dm.org/UltimateAngular/ngxerrors.svg
-[david-badge-url]: https://david-dm.org/UltimateAngular/ngxerrors
-[david-dev-badge]: https://david-dm.org/UltimateAngular/ngxerrors/dev-status.svg
-[david-dev-badge-url]: https://david-dm.org/UltimateAngular/ngxerrors?type=dev
-[npm-badge]: https://img.shields.io/npm/v/@ultimate/ngxerrors.svg
-[npm-badge-url]: https://www.npmjs.com/package/@ultimate/ngxerrors
+[circle-badge]: https://circleci.com/gh/PolarCape/ngxerrors.svg?style=svg
+[circle-badge-url]: https://circleci.com/gh/PolarCape/ngxerrors
+[david-badge]: https://david-dm.org/PolarCape/ngxerrors.svg
+[david-badge-url]: https://david-dm.org/PolarCape/ngxerrors
+[david-dev-badge]: https://david-dm.org/PolarCape/ngxerrors/dev-status.svg
+[david-dev-badge-url]: https://david-dm.org/PolarCape/ngxerrors?type=dev
+[npm-badge]: https://img.shields.io/npm/v/@polarcape/ngxerrors.svg
+[npm-badge-url]: https://www.npmjs.com/package/@polarcape/ngxerrors
 
 # Contributing
 
