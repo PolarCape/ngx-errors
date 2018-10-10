@@ -1,6 +1,6 @@
 {
   "name": "@polarcape/ngx-errors",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A declarative validation module for reactive forms",
   "author": "Ultimate Angular",
   "license": "MIT",
