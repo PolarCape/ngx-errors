@@ -3,10 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgxErrorsDirective } from './ngxerrors.directive';
 import { NgxErrorDirective } from './ngxerror.directive';
 
-const dependencies = [
-  NgxErrorsDirective,
-  NgxErrorDirective
-];
+const dependencies = [NgxErrorsDirective, NgxErrorDirective];
 
 @NgModule({
   declarations: [...dependencies],

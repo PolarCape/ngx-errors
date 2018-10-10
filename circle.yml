@@ -1,10 +1,10 @@
 version: 2
 jobs:
   build:
-    working_directory: /ngerrors
+    working_directory: ~/ngerrors
 
     docker:
-      - image: ultimateangular/ngerrors-primary:latest
+      - image: circleci/node:9.11-browsers
 
     steps:
       - checkout
