@@ -18,6 +18,11 @@ ngx-errors
 
 ---
 
+***Note:** This package is a fork from @ultimate/ngxerrors. The reason why is because the main package is not maintained anymore. This package supports Angular 6+.*
+_Feel free to create issues and pull requests as needed._
+
+---
+
 # Overview
 
 Why use ngx-errors, how to install and use.
@@ -359,12 +364,12 @@ The `errors` property returns the object associated with any active errors. This
 
 > The errors returned are identical to Angular's FormControl API
 
-[circle-badge]: https://circleci.com/gh/PolarCape/ngxerrors.svg?style=svg
-[circle-badge-url]: https://circleci.com/gh/PolarCape/ngxerrors
-[david-badge]: https://david-dm.org/PolarCape/ngxerrors.svg
-[david-badge-url]: https://david-dm.org/PolarCape/ngxerrors
-[david-dev-badge]: https://david-dm.org/PolarCape/ngxerrors/dev-status.svg
-[david-dev-badge-url]: https://david-dm.org/PolarCape/ngxerrors?type=dev
+[circle-badge]: https://circleci.com/gh/PolarCape/ngx-errors.svg?style=svg
+[circle-badge-url]: https://circleci.com/gh/PolarCape/ngx-errors
+[david-badge]: https://david-dm.org/PolarCape/ngx-errors.svg
+[david-badge-url]: https://david-dm.org/PolarCape/ngx-errors
+[david-dev-badge]: https://david-dm.org/PolarCape/ngx-errors/dev-status.svg
+[david-dev-badge-url]: https://david-dm.org/PolarCape/ngx-errors?type=dev
 [npm-badge]: https://img.shields.io/npm/v/@polarcape/ngxerrors.svg
 [npm-badge-url]: https://www.npmjs.com/package/@polarcape/ngxerrors
 
