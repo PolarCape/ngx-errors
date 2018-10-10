@@ -18,8 +18,8 @@ ngx-errors
 
 ---
 
-***Note:** This package is a fork from @ultimate/ngxerrors. The reason why is because the main package is not maintained anymore. This package supports Angular 6+.*
-_Feel free to create issues and pull requests as needed._
+**Note:** This package is a fork from @ultimate/ngxerrors. The reason why is because the main package is not maintained anymore. This package supports Angular 6+.
+Feel free to create issues and pull requests as needed.
 
 ---
 
@@ -370,8 +370,8 @@ The `errors` property returns the object associated with any active errors. This
 [david-badge-url]: https://david-dm.org/PolarCape/ngx-errors
 [david-dev-badge]: https://david-dm.org/PolarCape/ngx-errors/dev-status.svg
 [david-dev-badge-url]: https://david-dm.org/PolarCape/ngx-errors?type=dev
-[npm-badge]: https://img.shields.io/npm/v/@polarcape/ngxerrors.svg
-[npm-badge-url]: https://www.npmjs.com/package/@polarcape/ngxerrors
+[npm-badge]: https://img.shields.io/npm/v/@polarcape/ngx-errors.svg
+[npm-badge-url]: https://www.npmjs.com/package/@polarcape/ngx-errors
 
 # Contributing
 
