@@ -1,11 +1,11 @@
 {
-  "name": "@polarcape/ngxerrors",
-  "version": "0.0.0",
+  "name": "@polarcape/ngx-errors",
+  "version": "1.4.0",
   "description": "A declarative validation module for reactive forms",
   "author": "Ultimate Angular",
   "license": "MIT",
   "repository": {
-    "url": "https://github.com/PolarCape/ngxerrors.git",
+    "url": "https://github.com/PolarCape/ngx-errors.git",
     "type": "git"
   },
   "scripts": {
