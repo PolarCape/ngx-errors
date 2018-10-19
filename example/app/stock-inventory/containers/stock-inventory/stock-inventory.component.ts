@@ -3,13 +3,11 @@ import { FormBuilder, FormGroup, FormArray, Validators, AbstractControl } from '
 
 import { StockValidators } from './stock-inventory.validators';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/forkJoin';
-import 'rxjs/add/operator/map';
-
 import { StockInventoryService } from '../../services/stock-inventory.service';
 
 import { Product, Item } from '../../models/product.interface';
+import { Observable, forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'stock-inventory',
@@ -39,7 +37,7 @@ import { Product, Item } from '../../models/product.interface';
         </div>
 
         <div class="stock-inventory__buttons">
-          <button 
+          <button
             type="submit"
             [disabled]="form.invalid">
             Order stock
@@ -53,63 +51,55 @@ import { Product, Item } from '../../models/product.interface';
   `
 })
 export class StockInventoryComponent implements OnInit {
-
   products: Product[];
 
   total: number;
 
   productMap: Map<number, Product>;
 
-  form = this.fb.group({
-    store: this.fb.group({
-      branch: [
-        '',
-        [Validators.required, StockValidators.checkBranch],
-        [this.validateBranch.bind(this)]
-      ],
-      code: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(5)]]
-    }),
-    selector: this.createStock({}),
-    stock: this.fb.array([])
-  }, { validator: StockValidators.checkStockExists });
+  form = this.fb.group(
+    {
+      store: this.fb.group({
+        branch: [
+          '',
+          [Validators.required, StockValidators.checkBranch],
+          [this.validateBranch.bind(this)]
+        ],
+        code: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(5)]]
+      }),
+      selector: this.createStock({}),
+      stock: this.fb.array([])
+    },
+    { validator: StockValidators.checkStockExists }
+  );
 
-  constructor(
-    private fb: FormBuilder,
-    private stockService: StockInventoryService
-  ) {}
+  constructor(private fb: FormBuilder, private stockService: StockInventoryService) {}
 
   ngOnInit() {
     const cart = this.stockService.getCartItems();
     const products = this.stockService.getProducts();
 
-    Observable
-      .forkJoin(cart, products)
-      .subscribe(([cart, products]: [Item[], Product[]]) => {
+    forkJoin(cart, products).subscribe(([cart, products]: [Item[], Product[]]) => {
+      const myMap = products.map<[number, Product]>(product => [product.id, product]);
 
-        const myMap = products
-          .map<[number, Product]>(product => [product.id, product]);
+      this.productMap = new Map<number, Product>(myMap);
+      this.products = products;
+      cart.forEach(item => this.addStock(item));
 
-        this.productMap = new Map<number, Product>(myMap);
-        this.products = products;
-        cart.forEach(item => this.addStock(item));
-
-        this.calculateTotal(this.form.get('stock').value);
-        this.form.get('stock')
-          .valueChanges.subscribe(value => this.calculateTotal(value));
-
-      });
-
+      this.calculateTotal(this.form.get('stock').value);
+      this.form.get('stock').valueChanges.subscribe(value => this.calculateTotal(value));
+    });
   }
 
   validateBranch(control: AbstractControl) {
     return this.stockService
       .checkBranchId(control.value)
-      .map((response: boolean) => response ? null : { unknownBranch: true });
+      .pipe(map((response: boolean) => (response ? null : { unknownBranch: true })));
   }
 
   calculateTotal(value: Item[]) {
     const total = value.reduce((prev, next) => {
-      return prev + (next.quantity * this.productMap.get(next.product_id).price);
+      return prev + next.quantity * this.productMap.get(next.product_id).price;
     }, 0);
     this.total = total;
   }
@@ -126,7 +116,7 @@ export class StockInventoryComponent implements OnInit {
     control.push(this.createStock(stock));
   }
 
-  removeStock({ group, index }: { group: FormGroup, index: number }) {
+  removeStock({ group, index }: { group: FormGroup; index: number }) {
     const control = this.form.get('stock') as FormArray;
     control.removeAt(index);
   }
