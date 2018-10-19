@@ -5,13 +5,13 @@ const typescript = require('typescript');
 const plugins = [
   new webpack.DefinePlugin({
     'process.env': {
-      'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV)
     }
-  }),
-  new webpack.optimize.CommonsChunkPlugin({
-    name: 'vendor',
-    minChunks: (module) => module.context && /node_modules/.test(module.context)
   })
+  // new webpack.optimize.CommonsChunkPlugin({
+  //   name: 'vendor',
+  //   minChunks: module => module.context && /node_modules/.test(module.context)
+  // })
 ];
 
 if (process.env.NODE_ENV === 'production') {
@@ -44,13 +44,17 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   plugins.push(
     new webpack.NamedModulesPlugin(),
-    new webpack.ContextReplacementPlugin(/angular(\\|\/)core(\\|\/)@angular/, path.resolve(__dirname, './notfound'))
+    new webpack.ContextReplacementPlugin(
+      /angular(\\|\/)core(\\|\/)@angular/,
+      path.resolve(__dirname, './notfound')
+    )
   );
 }
 
 module.exports = {
   cache: true,
   context: __dirname,
+  mode: process.env.NODE_ENV ? process.env.NODE_ENV : 'development',
   devServer: {
     contentBase: path.join(__dirname, 'example'),
     historyApiFallback: true,
@@ -102,11 +106,23 @@ module.exports = {
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loader: 'file-loader'
-      },
+      }
     ]
   },
   resolve: {
     extensions: ['.ts', '.js']
   },
-  plugins
+  plugins,
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          chunks: 'initial',
+          name: 'vendor',
+          test: path.resolve(__dirname, 'node_modules'),
+          enforce: true
+        }
+      }
+    }
+  }
 };
