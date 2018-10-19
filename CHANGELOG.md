@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.5.0"></a>
+# [1.5.0](https://github.com/PolarCape/ngx-errors/compare/v1.4.3...v1.5.0) (2018-10-19)
+
+
+### Features
+
+* **dependencies:** Update dependencies and rxjs implementation in example ([bffb30f](https://github.com/PolarCape/ngx-errors/commit/bffb30f))
+
+
+
 <a name="1.4.3"></a>
 ## [1.4.3](https://github.com/PolarCape/ngx-errors/compare/v1.4.2...v1.4.3) (2018-10-10)
 
