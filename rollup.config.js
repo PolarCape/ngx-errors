@@ -1,9 +1,11 @@
 export default {
-  entry: 'dist/index.js',
-  dest: 'dist/bundle/polarcape.ngxerrors.umd.js',
-  format: 'umd',
+  input: 'dist/index.js',
+  output: {
+    file: 'dist/bundle/polarcape.ngxerrors.umd.js',
+    format: 'umd',
+    name: 'ngxerrors'
+  },
   exports: 'named',
-  moduleName: 'ngxerrors',
   globals: {
     typescript: 'ts'
   }
